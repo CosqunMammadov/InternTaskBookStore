@@ -1,0 +1,22 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2023110208
+      author: cosqunmammadov
+      changes:
+        - createTable:
+            tableName: authors_students
+            columns:
+              - column:
+                  name: author_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_student_author_id
+                    references: authors(id)
+              - column:
+                  name: student_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_author_student_id
+                    references: students(id)
