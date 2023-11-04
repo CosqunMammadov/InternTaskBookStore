@@ -13,6 +13,7 @@ databaseChangeLog:
                     nullable: false
                     foreignKeyName: fk_role_user
                     references: users(id)
+                    primaryKey: true
               - column:
                   name: role_id
                   type: BIGINT
@@ -20,3 +21,4 @@ databaseChangeLog:
                     nullable: false
                     foreignKeyName: fk_user_role
                     references: students(id)
+                    primaryKey: true

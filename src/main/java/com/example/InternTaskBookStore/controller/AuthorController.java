@@ -5,6 +5,7 @@ import com.example.InternTaskBookStore.model.dto.response.BookResponseDto;
 import com.example.InternTaskBookStore.service.AuthorService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,13 +21,10 @@ public class AuthorController {
         authorService.register(signUpRequestDto);
     }
 
-//    @GetMapping("/get-written-books/{id}")
-//    public List<BookResponseDto> getWrittenBooks(@PathVariable Long id){
-//        return authorService.getWrittenBooks(id);
-//    }
-
-    @DeleteMapping("/delete-book/{authorId}/{bookId}")
-    public void deleteWrittenBook(@PathVariable Long authorId, @PathVariable Long bookId){
-        authorService.deleteWrittenBook(authorId, bookId);
+    @GetMapping("/get-written-books/{id}")
+    @PreAuthorize("hasRole('AUTHOR')")
+    public List<BookResponseDto> getWrittenBooks(@PathVariable Long id){
+        return authorService.getWrittenBooks(id);
     }
+
 }

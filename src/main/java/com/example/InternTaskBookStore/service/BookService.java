@@ -53,7 +53,12 @@ public class BookService {
         return bookResponseDtoList;
     }
 
-    public void delete(Book book){
+    public List<Book> getBooksByAuthorId(Long authorId){
+        return bookRepository.getBooksByAuthorId(authorId);
+    }
+
+    public void delete(Long bookId){
+        Book book = bookRepository.getById(bookId);
         bookRepository.delete(book);
     }
 

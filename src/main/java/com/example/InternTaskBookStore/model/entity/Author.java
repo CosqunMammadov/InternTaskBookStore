@@ -25,7 +25,7 @@ public class Author {
 
     int age;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     Set<Book> writtenBooks;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

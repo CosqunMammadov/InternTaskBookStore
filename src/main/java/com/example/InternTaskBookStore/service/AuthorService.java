@@ -14,8 +14,10 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class AuthorService {
@@ -54,18 +56,20 @@ public class AuthorService {
         return authorRepository.getSubscribers(id);
     }
 
-//    public List<BookResponseDto> getWrittenBooks(Long id){
-//        List<Book> books = authorRepository.getWrittenBooks(id);
-//        List<BookResponseDto> bookResponseDtoList = new LinkedList<>();
-//        books.forEach(book -> bookResponseDtoList.add(bookMapper.bookToBookResponseDto(book)));
-//        return bookResponseDtoList;
-//    }
-
-    public void deleteWrittenBook(Long authorId, Long bookId){
-        Author author = authorRepository.getById(authorId);
-        Book book = bookService.getById(bookId);
-        author.getWrittenBooks().remove(book);
-        authorRepository.save(author);
-        bookService.delete(book);
+    public List<BookResponseDto> getWrittenBooks(Long authorId){
+        List<Book> books = bookService.getBooksByAuthorId(authorId);
+        List<BookResponseDto> bookResponseDtoList = new LinkedList<>();
+        books.forEach(book -> bookResponseDtoList.add(bookMapper.bookToBookResponseDto(book)));
+        return bookResponseDtoList;
     }
+
+    public void setSubscribe(Long authorId, Student student){
+        Author author = authorRepository.getById(authorId);
+        Set<Student> subscribers = author.getSubscribers();
+        if (subscribers == null)
+            subscribers = new HashSet<>();
+        subscribers.add(student);
+        authorRepository.save(author);
+    }
+
 }

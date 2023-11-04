@@ -34,10 +34,4 @@ public class User {
     )
     Set<Role> roles;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "users_books",
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "book_id", referencedColumnName = "id")
-    )
-    Set<Book> booksRead;
 }

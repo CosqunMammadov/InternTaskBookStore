@@ -12,6 +12,12 @@ import java.util.List;
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Long> {
 
-    @Query("SELECT u.booksRead FROM Student s JOIN FETCH User u WHERE s.id =:id")
+    @Query("SELECT s.booksRead FROM Student s WHERE s.id =:id")
     List<Book> getBooksRead(Long id);
+
+    @Query("SELECT s FROM Student s WHERE s.id =:id")
+    Student getById(Long id);
+
+    @Query("SELECT s FROM Student s LEFT JOIN FETCH s.booksRead b WHERE b.id=:id")
+    List<Student> getReaders(Long id);
 }
