@@ -1,17 +1,16 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/intern_task_book_store
+    url: jdbc:postgresql://db:5432/intern_task_book_store
     username: postgres
     password: cosu2362
   jpa:
     hibernate:
       ddl-auto: none
     show-sql: true
-#    defer-datasource-initialization: true
     open-in-view: false
   sql:
     init:
-      mode: never
+      mode: always
   liquibase:
     enabled: true
     change-log: classpath:db/changelog/db.changelog-master.yaml
@@ -19,7 +18,7 @@ spring:
     host: smtp.gmail.com
     port: 587
     username: coshqun23.62@gmail.com
-    password: cfem xxgh yorl nyws
+    password: ${GMAIL_PASSWORD}
     properties:
       mail:
         smtp:

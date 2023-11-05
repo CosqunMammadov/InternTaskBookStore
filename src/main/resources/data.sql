@@ -6,7 +6,7 @@ values ('ROLE_AUTHOR'),
 -- (12345)
 insert into users(username, password, is_active)
 values ('cosqun', '$2a$12$JGYyROlRdc1wOBswNWmHDOLt/lLZZvhOJGeL3jDiJSAPmwVMksSeu', true),
-       ('maqsud', '$2a$12$ZjQUavnMV3RubpaG5EUWhuXLjixR8xAtieb.Aoka7JcWr/KREQ3Ai', true);
+       ('maqsud', '$$2a$12$JGYyROlRdc1wOBswNWmHDOLt/lLZZvhOJGeL3jDiJSAPmwVMksSeu', true);
 
 insert into authors(name, email, age, user_id)
 values ('Cosqun', 'cosqun@gmail.com', '23', '1');
@@ -23,8 +23,7 @@ insert into authors_students(author_id, student_id)
 values ('1', '1');
 
 insert into students_books(student_id, book_id)
-values ('1', '1'),
-       ('1', '2');
+values ('1', '1');
 
 insert into users_roles(user_id, role_id)
 values ('1', '1');

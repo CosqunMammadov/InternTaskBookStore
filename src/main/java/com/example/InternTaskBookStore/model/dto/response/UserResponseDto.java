@@ -16,5 +16,4 @@ import java.util.Set;
 public class UserResponseDto {
     String username;
     Set<Role> roles;
-    Set<Book> booksRead;
 }

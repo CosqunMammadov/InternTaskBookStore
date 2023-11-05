@@ -25,9 +25,6 @@ public class Author {
 
     int age;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    Set<Book> writtenBooks;
-
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "authors_students",
             joinColumns = @JoinColumn(name = "author_id", referencedColumnName = "id"),
